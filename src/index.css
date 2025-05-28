@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&display=swap');
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    @layer base {
+      :root {
+        --background: 224 71% 4%; /* Default dark background */
+        --foreground: 210 40% 98%; /* Default light text */
+
+        --card: 224 71% 4%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 224 71% 4%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+
+        --secondary: 217 33% 17%; /* Slightly lighter dark shade */
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+
+        --accent: 217 33% 17%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 63% 31%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217 33% 27%; /* Galactic blueish border */
+        --input: 217 33% 27%;
+        --ring: 210 40% 98%;
+
+        --radius: 0.75rem;
+
+        /* Custom Colors */
+        --galactic-blue: 220 80% 60%; /* Bright blue */
+        --neon-purple: 280 80% 65%; /* Bright purple */
+        --space-black: 240 10% 4%; /* Deep black for background */
+        --darker-blue-shade: 220 60% 20%; /* Darker blue for cards */
+      }
+
+      [data-theme="light"] {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+
+        --radius: 0.75rem;
+
+        /* Custom Colors for Light Theme (Adjust as needed) */
+        --galactic-blue: 220 70% 50%;
+        --neon-purple: 280 70% 55%;
+        --space-black: 210 20% 95%; /* Light gray for contrast */
+        --darker-blue-shade: 220 50% 70%; 
+      }
+    }
+
+    @layer base {
+      * {
+        @apply border-border;
+      }
+      body {
+        @apply bg-space-black text-foreground;
+        font-family: theme('fontFamily.body');
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        @apply font-sans font-bold;
+      }
+      h1 { @apply text-5xl lg:text-7xl; }
+      h2 { @apply text-4xl lg:text-5xl; }
+      h3 { @apply text-3xl lg:text-4xl; }
+
+      .glassmorphism-card {
+        @apply bg-glassmorphism backdrop-blur-md border border-galactic-blue/30 rounded-xl shadow-lg;
+      }
+
+      .glowing-button {
+        @apply bg-galactic-blue text-white font-bold py-3 px-6 rounded-lg shadow-glow-blue hover:shadow-glow-purple transition-all duration-300 ease-in-out transform hover:scale-105;
+        text-shadow: 0 0 5px hsl(var(--galactic-blue)), 0 0 10px hsl(var(--neon-purple));
+      }
+       .glowing-button-secondary {
+        @apply bg-neon-purple text-white font-bold py-3 px-6 rounded-lg shadow-glow-purple hover:shadow-glow-blue transition-all duration-300 ease-in-out transform hover:scale-105;
+        text-shadow: 0 0 5px hsl(var(--neon-purple)), 0 0 10px hsl(var(--galactic-blue));
+      }
+
+      .glowing-border-card {
+        @apply border-2 border-transparent rounded-xl p-6 relative;
+        background-clip: padding-box;
+      }
+      .glowing-border-card::before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        z-index: -1;
+        margin: -2px; 
+        border-radius: inherit; 
+        background: linear-gradient(135deg, hsl(var(--galactic-blue)), hsl(var(--neon-purple)));
+        animation: pulse-glow 3s infinite alternate;
+      }
+      .dark-blue-card {
+        @apply bg-darker-blue-shade border-2 border-galactic-blue/50 rounded-xl p-6 shadow-lg hover:shadow-galactic-blue/50;
+      }
+    }
+
+    /* Parallax Star Background */
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      animation: star-twinkle 3s infinite ease-in-out;
+      box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px hsl(var(--galactic-blue));
+    }
